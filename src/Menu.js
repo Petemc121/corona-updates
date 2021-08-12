@@ -18,6 +18,7 @@ export default function Menu({
             id="aliveCorona"
             style={{ transform: growElementHandler() }}
             src={changePic()}
+            alt=""
           ></img>
         </button>
       </div>
@@ -26,21 +27,21 @@ export default function Menu({
           <FontAwesomeIcon
             style={{ display: buttonDisplayHandler() }}
             icon={faGlobeAmericas}
-            size="4x"
+            size="3x"
           />
         </button>
         <button class="menuButtons">
           <FontAwesomeIcon
             style={{ display: buttonDisplayHandler() }}
             icon={faNewspaper}
-            size="4x"
+            size="3x"
           />
         </button>
         <button class="menuButtons">
           <FontAwesomeIcon
             style={{ display: buttonDisplayHandler() }}
             icon={faSignal}
-            size="4x"
+            size="3x"
           />
         </button>
       </div>

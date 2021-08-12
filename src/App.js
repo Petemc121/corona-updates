@@ -1,7 +1,8 @@
 import "./App.css";
 import Header from "./Header";
+import GlobeStats from "./GlobeStats"
 import Menu from "./Menu";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import aliveCorona from "./alive-corona.png";
 import deadCorona from "./dead-corona.png";
 
@@ -52,6 +53,7 @@ export default function App() {
           changePic={changePicHandler}
           buttonDisplayHandler={buttonDisplayHandler}
         />
+        <GlobeStats /> 
       </div>
     </>
   );

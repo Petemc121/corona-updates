@@ -80,31 +80,55 @@ td {
   font-size: 40px;
   font-weight: bold;
 }
-
-body {
-  background-color: #003566;
-}
-
-#container {
-  height: 100vh;
-}
-
 #headCorona {
   width: 50px;
   margin: 0px 50px;
 }
 
 #aliveCorona {
-  width: 300px;
-  height: 300px;
+  width: 150px;
+  height: 150px;
   transition: all 0.2s;
 }
+
+.menuButtons {
+  color: #ffb703;
+  margin: 0px 40px;
+}
+
+
+@media (max-width:400px) {
+ #header {font-size:20px;}
+
+
+#headCorona {
+  margin: 0px 20px;
+}
+
+.menuButtons {
+  margin: 0px 20px;
+}
+
+}
+
+body {
+  background-color: #003566;
+}
+
+#container {
+  height: 1000px;
+  width:100%;
+}
+
+
+
+
 
 .center {
   display: flex;
   width: 100%;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 button {
@@ -113,7 +137,53 @@ button {
   cursor: pointer;
 }
 
-.menuButtons {
-  color: #ffb703;
-  margin: 0px 40px;
+
+
+.progress-circle {
+  transform: rotate(-90deg);
+  margin-top: -40px;
+  margin-bottom: 20px;
+}
+
+.progress-circle-back {
+  fill: none;
+  stroke: rgb(241, 225, 4);
+  stroke-width: 10px;
+  stroke-dasharray: 0 999;
+  stroke-dashoffset: 0px;
+  transition: stroke-dasharray 0.7s linear 0s;
+}
+
+.progress-circle-mid {
+  fill: none;
+  stroke: rgb(151, 1, 1);
+  stroke-width: 10px;
+  stroke-dasharray: 0 999;
+  stroke-dashoffset: 0px;
+  transition: stroke-dasharray 0.7s linear 0s;
+}
+
+.progress-circle-prog {
+  fill: none;
+  stroke: rgb(44, 175, 11);
+  stroke-width: 10px;
+  stroke-dasharray: 0 999;
+  stroke-dashoffset: 0px;
+  transition: stroke-dasharray 0.7s linear 0s;
+}
+
+.textStats{
+  width: 100%;
+  top: 200px;
+  text-align: center;
+  font-size: 2em;
+}
+
+#pieChart {
+  display:none;
+}
+
+#pieNumbers {
+  display:none;
+
 }
