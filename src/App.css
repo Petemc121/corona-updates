@@ -112,3 +112,8 @@ button {
   border: none;
   cursor: pointer;
 }
+
+.menuButtons {
+  color: #ffb703;
+  margin: 0px 40px;
+}
