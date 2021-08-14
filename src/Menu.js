@@ -9,10 +9,11 @@ export default function Menu({
   growElementHandler,
   activeHandler,
   buttonDisplayHandler,
+  carouselPositionHandler
 }) {
   return (
     <>
-      <div class="center">
+      <div class="menuContain center">
         <button onClick={activeHandler} class="button button-expand">
           <img
             id="aliveCorona"
@@ -23,25 +24,25 @@ export default function Menu({
         </button>
       </div>
       <div class="center">
-        <button class="menuButtons">
+        <button onClick={() => {carouselPositionHandler('0%')}} class="menuButtons">
           <FontAwesomeIcon
             style={{ display: buttonDisplayHandler() }}
             icon={faGlobeAmericas}
-            size="3x"
+            size="2x"
           />
         </button>
-        <button class="menuButtons">
+        <button onClick={() => {carouselPositionHandler('100%')}} class="menuButtons">
           <FontAwesomeIcon
             style={{ display: buttonDisplayHandler() }}
             icon={faNewspaper}
-            size="3x"
+            size="2x"
           />
         </button>
-        <button class="menuButtons">
+        <button onClick={() => {carouselPositionHandler('200%')}} class="menuButtons">
           <FontAwesomeIcon
             style={{ display: buttonDisplayHandler() }}
             icon={faSignal}
-            size="3x"
+            size="2x"
           />
         </button>
       </div>

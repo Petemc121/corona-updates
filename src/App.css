@@ -94,6 +94,7 @@ td {
 .menuButtons {
   color: #ffb703;
   margin: 0px 40px;
+  z-index:2;
 }
 
 
@@ -113,22 +114,29 @@ td {
 
 body {
   background-color: #003566;
+  overflow-x:hidden;
 }
 
 #container {
   height: 1000px;
   width:100%;
+  position:absolute;
+  
+
 }
 
 
-
+.menuContain
+{
+  margin-top:50px;
+}
 
 
 .center {
   display: flex;
   width: 100%;
   justify-content: center;
-  margin-top: 50px;
+
 }
 
 button {
@@ -149,7 +157,7 @@ button {
   fill: none;
   stroke: rgb(241, 225, 4);
   stroke-width: 10px;
-  stroke-dasharray: 0 999;
+  stroke-dasharray: 999 999;
   stroke-dashoffset: 0px;
   transition: stroke-dasharray 0.7s linear 0s;
 }
@@ -158,7 +166,7 @@ button {
   fill: none;
   stroke: rgb(151, 1, 1);
   stroke-width: 10px;
-  stroke-dasharray: 0 999;
+  stroke-dasharray: 999 999;
   stroke-dashoffset: 0px;
   transition: stroke-dasharray 0.7s linear 0s;
 }
@@ -167,7 +175,7 @@ button {
   fill: none;
   stroke: rgb(44, 175, 11);
   stroke-width: 10px;
-  stroke-dasharray: 0 999;
+  stroke-dasharray: 999 999;
   stroke-dashoffset: 0px;
   transition: stroke-dasharray 0.7s linear 0s;
 }
@@ -180,10 +188,57 @@ button {
 }
 
 #pieChart {
-  display:none;
+
+  margin:50px auto;
 }
 
-#pieNumbers {
-  display:none;
+#pieContain {
+  background-color:rgb(137, 185, 223);
+  width:20%;
+  margin:0px auto;
+  border-radius:5px;
 
+}
+
+#pieNumbers
+{
+  margin-top:-50px;
+}
+#graphsContain {
+  background-color:red;
+  width:20%;
+  height:250px;
+  margin: 0px auto;
+  border-radius:5px;
+
+}
+
+#newsContain {
+  background-color:green;
+  width:20%;
+  height:250px;
+  margin: 0px auto;
+  border-radius:5px;
+}
+
+#statCarousel {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  width:300%;
+  margin: 20px auto;
+  position:relative;
+  transition:all 0.5s;
+}
+
+#statsCenter {
+  display:flex;
+  justify-content:space-evenly;
+  margin:10px 0px;
+}
+
+.verticalCenter {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
