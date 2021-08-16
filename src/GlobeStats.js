@@ -1,22 +1,7 @@
-import React, {useState} from "react";
+import React from "react";
+import Countries from "./Countries";
 
-export default function GlobeStats({covidData}) {
-const [countryList, setCountryList] = useState([]);
-const countryArray = [];
-        covidData.then(response => {
-            response.data.forEach(dataPoint => {
-              countryArray.push(dataPoint)
-            })
-        })
-
-
-    function makeCountryList() {
-        setCountryList(countryArray);
-    }
-
-        console.log(countryList)
-    
-    
+export default function GlobeStats() {
 
   return (
     <>
@@ -100,9 +85,7 @@ const countryArray = [];
         </div>
 
         <div class="center">
-          <select id="countrySelect">
-              {makeCountryList}
-          </select>
+             <Countries  />
         </div>
       </div>
     </>

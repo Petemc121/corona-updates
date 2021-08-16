@@ -7,14 +7,12 @@ import aliveCorona from "./alive-corona.png";
 import deadCorona from "./dead-corona.png";
 import Graphs from "./Graphs";
 import News from "./News";
-import Axios from "axios";
 
 export default function App() {
   const [active, setActive] = useState(false);
   const [carouselPosition, setCarouselPosition] = useState("0%");
 
- const covidData = Axios.get("https://api.apify.com/v2/key-value-stores/tVaYRsPHLjNdNBu7S/records/LATEST?disableRedirect=true");
-
+ 
   const activeHandler = () => {
     setActive(!active);
   };
@@ -55,6 +53,8 @@ export default function App() {
     setCarouselPosition(value);
   }
 
+
+
   return (
     <>
       <div id="container" onClick={inactiveHandler}></div>
@@ -67,7 +67,7 @@ export default function App() {
           carouselPositionHandler={carouselPositionHandler}
         />
         <div style={{right:carouselPosition}} id="statCarousel">
-        <GlobeStats covidData={covidData} /> 
+        <GlobeStats /> 
         <News /> 
         <Graphs />
         </div>
