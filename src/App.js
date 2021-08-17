@@ -1,8 +1,9 @@
 import "./App.css";
 import Header from "./Header";
-import GlobeStats from "./GlobeStats"
+import GlobeStats from "./GlobeStats";
 import Menu from "./Menu";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Axios from "axios";
 import aliveCorona from "./alive-corona.png";
 import deadCorona from "./dead-corona.png";
 import Graphs from "./Graphs";
@@ -11,8 +12,22 @@ import News from "./News";
 export default function App() {
   const [active, setActive] = useState(false);
   const [carouselPosition, setCarouselPosition] = useState("0%");
+  const [covidData, setCovidData] = useState([]);
 
- 
+  useEffect(() => {
+    async function fetchGlobalData() {
+      const request = await Axios.get(
+        "https://api.apify.com/v2/key-value-stores/tVaYRsPHLjNdNBu7S/records/LATEST?disableRedirect=true"
+      );
+
+      setCovidData(request.data);
+      return request;
+    }
+
+    fetchGlobalData();
+    console.log(covidData);
+  }, []);
+
   const activeHandler = () => {
     setActive(!active);
   };
@@ -30,8 +45,6 @@ export default function App() {
       return deadCorona;
     }
   };
-
-
 
   const buttonDisplayHandler = () => {
     if (active === true) {
@@ -51,26 +64,24 @@ export default function App() {
 
   const carouselPositionHandler = (value) => {
     setCarouselPosition(value);
-  }
-
-
+  };
 
   return (
     <>
       <div id="container" onClick={inactiveHandler}></div>
-        <Header />
-        <Menu
-          activeHandler={activeHandler}
-          growElementHandler={growElementHandler}
-          changePic={changePicHandler}
-          buttonDisplayHandler={buttonDisplayHandler}
-          carouselPositionHandler={carouselPositionHandler}
-        />
-        <div style={{right:carouselPosition}} id="statCarousel">
-        <GlobeStats /> 
-        <News /> 
+      <Header />
+      <Menu
+        activeHandler={activeHandler}
+        growElementHandler={growElementHandler}
+        changePic={changePicHandler}
+        buttonDisplayHandler={buttonDisplayHandler}
+        carouselPositionHandler={carouselPositionHandler}
+      />
+      <div style={{ right: carouselPosition }} id="statCarousel">
+        <GlobeStats covidData={covidData} />
+        <News />
         <Graphs />
-        </div>
+      </div>
     </>
   );
 }

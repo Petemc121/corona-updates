@@ -1,11 +1,10 @@
 import React from 'react'
 
-export default function Country({dataPoint}) {
-    console.log(dataPoint);
+export default function Country({country}) {
 
     return (
-        <option value={dataPoint}>
-            {dataPoint}
+        <option value={country}>
+            {country}
         </option>
     )
 }

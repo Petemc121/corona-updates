@@ -1,7 +1,7 @@
 import React from "react";
 import Countries from "./Countries";
 
-export default function GlobeStats() {
+export default function GlobeStats({covidData}) {
 
   return (
     <>
@@ -85,7 +85,7 @@ export default function GlobeStats() {
         </div>
 
         <div class="center">
-             <Countries  />
+             <Countries  covidData={covidData} />
         </div>
       </div>
     </>
