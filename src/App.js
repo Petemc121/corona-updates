@@ -46,7 +46,7 @@ export default function App() {
     }
   };
 
-  const buttonDisplayHandler = () => {
+  const displayHandler = () => {
     if (active === true) {
       return "block";
     } else {
@@ -74,13 +74,13 @@ export default function App() {
         activeHandler={activeHandler}
         growElementHandler={growElementHandler}
         changePic={changePicHandler}
-        buttonDisplayHandler={buttonDisplayHandler}
+        buttonDisplayHandler={displayHandler}
         carouselPositionHandler={carouselPositionHandler}
       />
       <div style={{ right: carouselPosition }} id="statCarousel">
-        <GlobeStats covidData={covidData} />
-        <News />
-        <Graphs />
+        <GlobeStats  displayHandler={displayHandler} covidData={covidData} />
+        <News displayHandler={displayHandler} />
+        <Graphs displayHandler={displayHandler} />
       </div>
     </>
   );

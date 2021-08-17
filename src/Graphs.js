@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function Graphs() {
+export default function Graphs({displayHandler}) {
     return (
-        <div id="graphsContain">
+        <div style={{display:displayHandler()}} id="graphsContain">
             
         </div>
     )

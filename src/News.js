@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function News() {
+export default function News({displayHandler}) {
     return (
-        <div id="newsContain">
+        <div style={{display:displayHandler()}}  id="newsContain">
             
         </div>
     )

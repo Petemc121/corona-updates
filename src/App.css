@@ -125,10 +125,10 @@ body {
 
 }
 
-
 .menuContain
 {
-  margin-top:50px;
+  margin-top:30px;
+  margin-bottom:20px;
 }
 
 
@@ -155,9 +155,9 @@ button {
 
 .progress-circle-back {
   fill: none;
-  stroke: rgb(241, 225, 4);
+  stroke: rgb(245, 202, 10);
   stroke-width: 10px;
-  stroke-dasharray: 999 999;
+  stroke-dasharray: 0 999;
   stroke-dashoffset: 0px;
   transition: stroke-dasharray 0.7s linear 0s;
 }
@@ -166,16 +166,16 @@ button {
   fill: none;
   stroke: rgb(151, 1, 1);
   stroke-width: 10px;
-  stroke-dasharray: 999 999;
+  stroke-dasharray: 0 999;
   stroke-dashoffset: 0px;
   transition: stroke-dasharray 0.7s linear 0s;
 }
 
 .progress-circle-prog {
   fill: none;
-  stroke: rgb(44, 175, 11);
+  stroke: rgb(38, 160, 7);
   stroke-width: 10px;
-  stroke-dasharray: 999 999;
+  stroke-dasharray: 0 999;
   stroke-dashoffset: 0px;
   transition: stroke-dasharray 0.7s linear 0s;
 }
@@ -184,7 +184,14 @@ button {
   width: 100%;
   top: 200px;
   text-align: center;
-  font-size: 2em;
+  font-size: 20px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+#stats
+{
+  font-family:Arial, Helvetica, sans-serif;
+
 }
 
 #pieChart {
@@ -248,4 +255,8 @@ button {
   margin:10px 0px;
   border-radius:3px;
   border:2px solid #001d3d;
+}
+
+.title {
+
 }
