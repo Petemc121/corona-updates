@@ -3,13 +3,12 @@ import Countries from "./Countries";
 
 export default function GlobeStats({ covidData, displayHandler }) {
   const [country, setCountry] = useState({});
-  
-  const countryChangeHandler = (e) => {
 
-    if (e.target.value === 'Select a country') {
-      return
+  const countryChangeHandler = (e) => {
+    if (e.target.value === "Select a country") {
+      return;
     }
-    
+
     const infected = covidData.find(
       (datapoint) => datapoint.country === e.target.value
     ).infected;
@@ -20,21 +19,22 @@ export default function GlobeStats({ covidData, displayHandler }) {
       (datapoint) => datapoint.country === e.target.value
     ).deceased;
 
-  
-
-    setCountry({name: e.target.value, recovered: recovered, infected: infected, deceased: deceased});
-
+    setCountry({
+      name: e.target.value,
+      recovered: recovered,
+      infected: infected,
+      deceased: deceased,
+    });
   };
 
   const circleChangeHandler = (value, infectedValue, strokeValRatio) => {
-
-    const strokeVal = (strokeValRatio * 100) /  infectedValue;
-    return value * strokeVal + ' 999'
-  }
+    const strokeVal = (strokeValRatio * 100) / infectedValue;
+    return value * strokeVal + " 999";
+  };
 
   return (
     <>
-      <div id="pieContain" style={{display: displayHandler()}} >
+      <div id="pieContain" style={{ display: displayHandler() }}>
         <div id="pieChart" class="center">
           <svg
             class="progress-circle"
@@ -54,7 +54,13 @@ export default function GlobeStats({ covidData, displayHandler }) {
                 cx="100"
                 cy="100"
                 r="90"
-                style={{strokeDasharray: circleChangeHandler(country.infected, country.infected, 5.7)}}
+                style={{
+                  strokeDasharray: circleChangeHandler(
+                    country.infected,
+                    country.infected,
+                    5.7
+                  ),
+                }}
               ></circle>
             </svg>
             <svg
@@ -69,7 +75,13 @@ export default function GlobeStats({ covidData, displayHandler }) {
                 cx="100"
                 cy="100"
                 r="70"
-                style={{strokeDasharray: circleChangeHandler(country.deceased, country.infected, 4.64)}}
+                style={{
+                  strokeDasharray: circleChangeHandler(
+                    country.deceased,
+                    country.infected,
+                    4.64
+                  ),
+                }}
               ></circle>
             </svg>
             <circle
@@ -77,39 +89,51 @@ export default function GlobeStats({ covidData, displayHandler }) {
               cx="100"
               cy="100"
               r="80"
-              style={{strokeDasharray: circleChangeHandler(country.recovered, country.infected, 4.64)}}
+              style={{
+                strokeDasharray: circleChangeHandler(
+                  country.recovered,
+                  country.infected,
+                  4.64
+                ),
+              }}
             ></circle>
           </svg>
         </div>
         <div id="pieNumbers" class="center">
           <div class="textStats" data-progress="0">
             <p class="title">Recovery rate</p>
-            <p id="RR">xz </p>
+            <p id="RR">{(country.recovered / country.infected).toFixed(3)}</p>
           </div>
           <div class="textStats" data-progress="0">
             <p class="title">Death rate</p>
-            <p id="DR">c z</p>
+            <p id="DR">{(country.deceased / country.infected).toFixed(3)}</p>
           </div>
         </div>
 
         <div id="stats">
           <div id="statsCenter">
             <div class="verticalCenter">
-              <p style={{color:"rgb(38, 160, 7)"}} class="statsTitle">Recovered</p>
+              <p style={{ color: "rgb(30, 129, 6)" }} class="statsTitle">
+                Recovered
+              </p>
               <p class="statsD" id="recoveredStat">
                 {country.recovered}
               </p>
             </div>
             <div class="verticalCenter">
-              <p style={{color:"rgb(245, 202, 10)"}} class="statsTitle">Infected</p>
+              <p style={{ color: "#ffb703" }} class="statsTitle">
+                Infected
+              </p>
               <div class="statsD" id="infectedStat">
-              {country.infected}
+                {country.infected}
               </div>
             </div>
             <div class="verticalCenter">
-              <p style={{color:"rgb(151, 1, 1)"}} class="statsTitle">Deceased</p>
+              <p style={{ color: "rgb(126, 3, 3)" }} class="statsTitle">
+                Deceased
+              </p>
               <p class="statsD" id="deceasedStat">
-              {country.deceased}
+                {country.deceased}
               </p>
             </div>
           </div>

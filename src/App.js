@@ -13,7 +13,10 @@ export default function App() {
   const [active, setActive] = useState(false);
   const [carouselPosition, setCarouselPosition] = useState("0%");
   const [covidData, setCovidData] = useState([]);
+  const [covidNews, setCovidNews] = useState([]);
 
+  console.log(covidData);
+  console.log(covidNews);
   useEffect(() => {
     async function fetchGlobalData() {
       const request = await Axios.get(
@@ -21,11 +24,19 @@ export default function App() {
       );
 
       setCovidData(request.data);
+      console.log(fetchGlobalData());
       return request;
     }
 
+    async function fetchNewsInfo() {
+      const request = await Axios.get(
+        "https://newsapi.org/v2/everything?qInTitle=COVID-19&apiKey=7521ed286755491d9f27093d1f8d22c3"
+      );
+      setCovidNews(request.data);
+      return request;
+    }
+    console.log(fetchNewsInfo());
     fetchGlobalData();
-    console.log(covidData);
   }, []);
 
   const activeHandler = () => {
@@ -78,8 +89,8 @@ export default function App() {
         carouselPositionHandler={carouselPositionHandler}
       />
       <div style={{ right: carouselPosition }} id="statCarousel">
-        <GlobeStats  displayHandler={displayHandler} covidData={covidData} />
-        <News displayHandler={displayHandler} />
+        <GlobeStats displayHandler={displayHandler} covidData={covidData} />
+        <News covidNews={covidNews} displayHandler={displayHandler} />
         <Graphs displayHandler={displayHandler} />
       </div>
     </>

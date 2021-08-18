@@ -94,49 +94,50 @@ td {
 .menuButtons {
   color: #ffb703;
   margin: 0px 40px;
-  z-index:2;
+  z-index: 2;
+  border-radius: 3px;
+  transition: all 0.5s;
 }
 
-
-@media (max-width:400px) {
- #header {font-size:20px;}
-
-
-#headCorona {
-  margin: 0px 20px;
+.menuButtons:focus {
+  color: #003566;
+  background-color: #ffb703;
 }
 
-.menuButtons {
-  margin: 0px 20px;
-}
+@media (max-width: 400px) {
+  #header {
+    font-size: 20px;
+  }
 
+  #headCorona {
+    margin: 0px 20px;
+  }
+
+  .menuButtons {
+    margin: 0px 20px;
+  }
 }
 
 body {
   background-color: #003566;
-  overflow-x:hidden;
+  overflow-x: hidden;
 }
 
 #container {
   height: 1000px;
-  width:100%;
-  position:absolute;
-  
-
+  width: 100%;
+  position: absolute;
 }
 
-.menuContain
-{
-  margin-top:30px;
-  margin-bottom:20px;
+.menuContain {
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
-
 
 .center {
   display: flex;
   width: 100%;
   justify-content: center;
-
 }
 
 button {
@@ -144,8 +145,6 @@ button {
   border: none;
   cursor: pointer;
 }
-
-
 
 .progress-circle {
   transform: rotate(-90deg);
@@ -155,7 +154,7 @@ button {
 
 .progress-circle-back {
   fill: none;
-  stroke: rgb(245, 202, 10);
+  stroke: #ffb703;
   stroke-width: 10px;
   stroke-dasharray: 0 999;
   stroke-dashoffset: 0px;
@@ -164,7 +163,7 @@ button {
 
 .progress-circle-mid {
   fill: none;
-  stroke: rgb(151, 1, 1);
+  stroke: rgb(126, 3, 3);
   stroke-width: 10px;
   stroke-dasharray: 0 999;
   stroke-dashoffset: 0px;
@@ -173,90 +172,101 @@ button {
 
 .progress-circle-prog {
   fill: none;
-  stroke: rgb(38, 160, 7);
+  stroke: rgb(30, 129, 6);
   stroke-width: 10px;
   stroke-dasharray: 0 999;
   stroke-dashoffset: 0px;
   transition: stroke-dasharray 0.7s linear 0s;
 }
 
-.textStats{
+.textStats {
   width: 100%;
   top: 200px;
   text-align: center;
   font-size: 20px;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
-#stats
-{
-  font-family:Arial, Helvetica, sans-serif;
-
+#stats {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-#pieChart {
-
-  margin:50px auto;
-}
-
-#pieContain {
-  background-color:rgb(137, 185, 223);
-  width:20%;
-  margin:0px auto;
-  border-radius:5px;
-
-}
-
-#pieNumbers
-{
-  margin-top:-50px;
-}
-
-#graphsContain {
-  background-color:red;
-  width:20%;
-  height:250px;
-  margin: 0px auto;
-  border-radius:5px;
-
-}
-
-#newsContain {
-  background-color:green;
-  width:20%;
-  height:250px;
-  margin: 0px auto;
-  border-radius:5px;
-}
-
-#statCarousel {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  width:300%;
-  margin: 20px auto;
-  position:relative;
-  transition:all 0.5s;
-}
-
-#statsCenter {
-  display:flex;
-  justify-content:space-evenly;
-  margin:10px 0px;
-}
-
-.verticalCenter {
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-
-  #countrySelect {
-  margin:10px 0px;
-  border-radius:3px;
-  border:2px solid #001d3d;
+.statsTitle {
+  font-weight: bold;
 }
 
 .title {
+  font-weight: bold;
+}
 
+#pieChart {
+  margin: 50px auto;
+}
+
+#pieContain {
+  background-color: rgb(137, 185, 223);
+  width: 20%;
+  margin: 0px auto;
+  border-radius: 5px;
+}
+
+#pieNumbers {
+  margin-top: -50px;
+}
+
+#graphsContain {
+  background-color: red;
+  width: 20%;
+  height: 250px;
+  margin: 0px auto;
+  border-radius: 5px;
+}
+
+#newsContain {
+  background-color: green;
+  width: 20%;
+  height: auto;
+  padding: 10px;
+  margin: 0px auto;
+  border-radius: 5px;
+}
+
+#articlesContain {
+  display: flex !important;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.article {
+  margin: 10px 0px;
+  width: 150px;
+}
+
+#statCarousel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 300%;
+  margin: 20px auto;
+  position: relative;
+  transition: all 0.5s;
+}
+
+#statsCenter {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 10px 0px;
+}
+
+.verticalCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#countrySelect {
+  margin: 10px 0px;
+  border-radius: 3px;
+  border: 2px solid #001d3d;
 }
