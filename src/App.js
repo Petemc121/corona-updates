@@ -14,9 +14,6 @@ export default function App() {
   const [carouselPosition, setCarouselPosition] = useState("0%");
   const [covidData, setCovidData] = useState([]);
   const [covidNews, setCovidNews] = useState([]);
-
-  console.log(covidData);
-  console.log(covidNews);
   useEffect(() => {
     async function fetchGlobalData() {
       const request = await Axios.get(
@@ -24,18 +21,32 @@ export default function App() {
       );
 
       setCovidData(request.data);
-      console.log(fetchGlobalData());
       return request;
     }
 
-    async function fetchNewsInfo() {
-      const request = await Axios.get(
-        "https://newsapi.org/v2/everything?qInTitle=COVID-19&apiKey=7521ed286755491d9f27093d1f8d22c3"
-      );
-      setCovidNews(request.data);
+    function fetchNewsInfo() {
+     
+      var options = {
+        method: 'GET',
+        url: 'https://google-news.p.rapidapi.com/v1/topic_headlines',
+        params: {lang: 'en', country: 'US', topic: 'COVID-19'},
+        headers: {
+          'x-rapidapi-key': '20cc5a8dc0msh36a172f0c13ba0ap10be23jsn17505f9c312a',
+          'x-rapidapi-host': 'google-news.p.rapidapi.com'
+        }
+      };
+       
+      const request = Axios.request(options).then(function (response) {
+        console.log(response.data);
+        setCovidNews(response.data)
+      }).catch(error => {
+        console.error(error);
+      });
+
       return request;
     }
-    console.log(fetchNewsInfo());
+
+    console.log(fetchNewsInfo())
     fetchGlobalData();
   }, []);
 
