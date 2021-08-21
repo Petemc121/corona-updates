@@ -9,7 +9,7 @@ export default function Menu({
   growElementHandler,
   activeHandler,
   buttonDisplayHandler,
-  carouselPositionHandler
+  carouselPositionHandler,
 }) {
   return (
     <>
@@ -24,21 +24,36 @@ export default function Menu({
         </button>
       </div>
       <div class="center">
-        <button onClick={() => {carouselPositionHandler('0%')}} class="menuButtons">
+        <button
+          onClick={() => {
+            carouselPositionHandler("0%");
+          }}
+          class="menuButtons"
+        >
           <FontAwesomeIcon
             style={{ display: buttonDisplayHandler() }}
             icon={faGlobeAmericas}
             size="2x"
           />
         </button>
-        <button onClick={() => {carouselPositionHandler('100%')}} class="menuButtons">
+        <button
+          onClick={() => {
+            carouselPositionHandler("100%");
+          }}
+          class="menuButtons"
+        >
           <FontAwesomeIcon
             style={{ display: buttonDisplayHandler() }}
             icon={faNewspaper}
             size="2x"
           />
         </button>
-        <button onClick={() => {carouselPositionHandler('200%')}} class="menuButtons">
+        <button
+          onClick={() => {
+            carouselPositionHandler("200%");
+          }}
+          class="menuButtons"
+        >
           <FontAwesomeIcon
             style={{ display: buttonDisplayHandler() }}
             icon={faSignal}
