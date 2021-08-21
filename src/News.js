@@ -3,13 +3,13 @@ import Article from "./Article";
 
 export default function News({ displayHandler, covidNews }) {
   console.log(covidNews);
-  // const first10Articles = covidNews.articles.slice(0, 9);
+  const first10Articles = covidNews.articles.slice(0, 9);
   return (
     <div style={{ display: displayHandler() }} id="newsContain">
       <div id="articlesContain">
-        {/* {first10Articles.map((article, index) => {
+        {first10Articles.map((article, index) => {
           return <Article key={index} article={article} />;
-        })} */}
+        })}
         
       </div>
     </div>

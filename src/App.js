@@ -28,8 +28,8 @@ export default function App() {
      
       var options = {
         method: 'GET',
-        url: 'https://google-news.p.rapidapi.com/v1/topic_headlines',
-        params: {lang: 'en', country: 'US', topic: 'COVID-19'},
+        url: 'https://free-news.p.rapidapi.com/v1/search',
+        params: {q:'COVID-19', lang: 'en', country: 'US'},
         headers: {
           'x-rapidapi-key': '20cc5a8dc0msh36a172f0c13ba0ap10be23jsn17505f9c312a',
           'x-rapidapi-host': 'google-news.p.rapidapi.com'
@@ -46,7 +46,7 @@ export default function App() {
       return request;
     }
 
-    console.log(fetchNewsInfo())
+    fetchNewsInfo()
     fetchGlobalData();
   }, []);
 
