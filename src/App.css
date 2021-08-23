@@ -234,13 +234,23 @@ button {
 
 #articlesContain {
   display: flex !important;
-  justify-content: space-evenly;
+  justify-content:center;
   flex-wrap: wrap;
+  flex-direction:row;
 }
 
 .article {
-  margin: 10px 0px;
-  width: 150px;
+  margin: 10px auto;
+  width: 80%;
+  text-align:center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+  "Lucida Sans", Arial, sans-serif;
+}
+
+.articleLink {
+  color:white;
+  text-decoration:none;
+
 }
 
 #statCarousel {

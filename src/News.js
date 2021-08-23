@@ -1,16 +1,11 @@
 import React from "react";
-import Article from "./Article";
+import Articles from "./Articles";
 
 export default function News({ displayHandler, covidNews }) {
-  console.log(covidNews);
-  const first10Articles = covidNews.articles.slice(0, 9);
   return (
     <div style={{ display: displayHandler() }} id="newsContain">
       <div id="articlesContain">
-        {first10Articles.map((article, index) => {
-          return <Article key={index} article={article} />;
-        })}
-        
+      {covidNews.articles && <Articles covidNews={covidNews}/>}
       </div>
     </div>
   );

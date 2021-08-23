@@ -14,41 +14,45 @@ export default function App() {
   const [carouselPosition, setCarouselPosition] = useState("0%");
   const [covidData, setCovidData] = useState([]);
   const [covidNews, setCovidNews] = useState([]);
+
   useEffect(() => {
     async function fetchGlobalData() {
-      const request = await Axios.get(
+      const request1 = await Axios.get(
         "https://api.apify.com/v2/key-value-stores/tVaYRsPHLjNdNBu7S/records/LATEST?disableRedirect=true"
       );
 
-      setCovidData(request.data);
-      return request;
-    }
-
-    function fetchNewsInfo() {
      
-      var options = {
-        method: 'GET',
-        url: 'https://free-news.p.rapidapi.com/v1/search',
-        params: {q:'COVID-19', lang: 'en', country: 'US'},
-        headers: {
-          'x-rapidapi-key': '20cc5a8dc0msh36a172f0c13ba0ap10be23jsn17505f9c312a',
-          'x-rapidapi-host': 'google-news.p.rapidapi.com'
-        }
-      };
-       
-      const request = Axios.request(options).then(function (response) {
-        console.log(response.data);
-        setCovidNews(response.data)
-      }).catch(error => {
-        console.error(error);
-      });
 
-      return request;
+      var options = {
+        method: "GET",
+        url: "https://free-news.p.rapidapi.com/v1/search",
+        params: { q: "COVID-19", lang: "en", country: "US" },
+        headers: {
+          "x-rapidapi-key":
+            "20cc5a8dc0msh36a172f0c13ba0ap10be23jsn17505f9c312a",
+          "x-rapidapi-host": "google-news.p.rapidapi.com",
+        },
+      };
+      const request2 = await Axios.request(options)
+        .then(function (response) {
+          console.log(response.data);
+          setCovidNews(response.data);
+          setCovidData(request1.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+
+
+      return (request1 + request2);
     }
 
-    fetchNewsInfo()
     fetchGlobalData();
+  
+    
   }, []);
+
+
 
   const activeHandler = () => {
     setActive(!active);

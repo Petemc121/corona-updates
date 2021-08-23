@@ -3,6 +3,7 @@ import Countries from "./Countries";
 
 export default function GlobeStats({ covidData, displayHandler }) {
   const [country, setCountry] = useState({});
+  console.log(covidData)
 
   const countryChangeHandler = (e) => {
     if (e.target.value === "Select a country") {
