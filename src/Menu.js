@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlobeAmericas } from "@fortawesome/free-solid-svg-icons";
 import { faNewspaper } from "@fortawesome/free-solid-svg-icons";
 import { faSignal } from "@fortawesome/free-solid-svg-icons";
+import {faSyringe} from "@fortawesome/free-solid-svg-icons";
 
 export default function Menu({
   changePic,
@@ -56,7 +57,7 @@ export default function Menu({
         >
           <FontAwesomeIcon
             style={{ display: buttonDisplayHandler() }}
-            icon={faSignal}
+            icon={faSyringe}
             size="2x"
           />
         </button>

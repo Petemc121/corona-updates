@@ -186,18 +186,26 @@ button {
   font-size: 20px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
+    
 }
 
 #stats {
   font-family: Arial, Helvetica, sans-serif;
+  color:white;
+}
+
+.numbers{
+  color:white;
 }
 
 .statsTitle {
   font-weight: bold;
+  color:#022B3A;
 }
 
 .title {
   font-weight: bold;
+  color:#022B3A;
 }
 
 #pieChart {
@@ -205,7 +213,7 @@ button {
 }
 
 #pieContain {
-  background-color: rgb(137, 185, 223);
+  background-color: #b5c0e4;
   width: 20%;
   margin: 0px auto;
   border-radius: 5px;
@@ -216,7 +224,7 @@ button {
 }
 
 #graphsContain {
-  background-color: red;
+  background-color: #b5c0e4;
   width: 20%;
   height: 250px;
   margin: 0px auto;
@@ -224,7 +232,7 @@ button {
 }
 
 #newsContain {
-  background-color: green;
+  background-color: #b5c0e4;
   width: 20%;
   height: auto;
   padding: 10px;
@@ -232,31 +240,43 @@ button {
   border-radius: 5px;
 }
 
-#articlesContain {
+.articlesContain {
   display: flex !important;
   justify-content:center;
   flex-wrap: wrap;
-  flex-direction:row;
+  flex-direction:column;
+  align-items:left;
 }
 
 .article {
   margin: 10px auto;
-  width: 80%;
-  text-align:center;
+  width: 90%;
+  text-align:left;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
   "Lucida Sans", Arial, sans-serif;
 }
 
 .articleLink {
-  color:white;
+  color:#022B3A;
+  font-weight:bold;
   text-decoration:none;
+}
+
+.articleLink:hover {
+  text-decoration: underline;
+}
+
+.published {
+  color:white;
+  font-size:12px;
+  margin-top:5px;
 
 }
 
 #statCarousel {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   width: 300%;
   margin: 20px auto;
   position: relative;

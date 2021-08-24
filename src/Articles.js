@@ -7,7 +7,7 @@ export default function Articles({covidNews}) {
 
         
     return (
-        <div>
+        <div class="articlesContain">
          {
             covidNews.articles.map((article, index) => {
                    

@@ -103,18 +103,18 @@ export default function GlobeStats({ covidData, displayHandler }) {
         <div id="pieNumbers" class="center">
           <div class="textStats" data-progress="0">
             <p class="title">Recovery rate</p>
-            <p id="RR">{(country.recovered / country.infected).toFixed(3)}</p>
+            <p class="numbers" id="RR">{(country.recovered / country.infected).toFixed(3)}</p>
           </div>
           <div class="textStats" data-progress="0">
             <p class="title">Death rate</p>
-            <p id="DR">{(country.deceased / country.infected).toFixed(3)}</p>
+            <p class="numbers" id="DR">{(country.deceased / country.infected).toFixed(3)}</p>
           </div>
         </div>
 
         <div id="stats">
           <div id="statsCenter">
             <div class="verticalCenter">
-              <p style={{ color: "rgb(30, 129, 6)" }} class="statsTitle">
+              <p id="recovered" class="statsTitle">
                 Recovered
               </p>
               <p class="statsD" id="recoveredStat">
@@ -122,7 +122,7 @@ export default function GlobeStats({ covidData, displayHandler }) {
               </p>
             </div>
             <div class="verticalCenter">
-              <p style={{ color: "#ffb703" }} class="statsTitle">
+              <p id="infected" class="statsTitle">
                 Infected
               </p>
               <div class="statsD" id="infectedStat">
@@ -130,7 +130,7 @@ export default function GlobeStats({ covidData, displayHandler }) {
               </div>
             </div>
             <div class="verticalCenter">
-              <p style={{ color: "rgb(126, 3, 3)" }} class="statsTitle">
+              <p id="deceased" class="statsTitle">
                 Deceased
               </p>
               <p class="statsD" id="deceasedStat">
