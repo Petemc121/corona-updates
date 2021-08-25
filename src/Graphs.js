@@ -3,7 +3,6 @@ import JSCharting from "jscharting-react";
 import GraphCountries from "./GraphCountries";
 
 export default function Graphs({ displayHandler, covidData, covidHistory }) {
-  console.log(covidHistory);
   const initConfig = {
     type: "line",
     series: [
@@ -22,14 +21,14 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
       return;
     }
 
-    console.log(e.target.value);
 
     const countryData = covidHistory.filter(
       (datapoint) => datapoint.Country === e.target.value
     );
 
     const formatedCountryData = countryData.map((datapoint) => {
-      return { x: datapoint.date, y: datapoint.total_cases };
+      const dateObject = new Date(datapoint.date)
+      return { x: dateObject, y: datapoint.total_cases };
     });
 
     const filteredCountryData = formatedCountryData.filter(datapoint => datapoint.y > 0)
@@ -56,15 +55,21 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
           {
             points: sortedCountryData,
             scales: {
-              xAxes: [
+              xAxis: 
                 {
-                  type: "time",
-                  time: {
-                    unit: "month",
-                    unitStepSize: 1,
+                  scale_type:'time',
+                  formatString: 'MMM-dd-yyyy',
+                  scale: {
+                    interval: {
+                      unit:'week',
+                      multiplier: 1,
+                    },
+                    minorInterval: {
+                      unit:'week',
+                      multiplier:1,
+                    }
                   },
                 },
-              ],
             },
           },
         ],
@@ -81,6 +86,7 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
         <GraphCountries
           graphCountryChange={handleGraphCountryChange}
           covidData={covidData}
+          covidHistory={covidHistory}
         />
       </div>
     </div>
