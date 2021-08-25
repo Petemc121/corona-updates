@@ -11,14 +11,14 @@ export default function GlobeStats({ covidData, displayHandler }) {
     }
 
     const infected = covidData.find(
-      (datapoint) => datapoint.country === e.target.value
-    ).infected;
+      (datapoint) => datapoint.Country === e.target.value
+    ).TotalCases;
     const recovered = covidData.find(
-      (datapoint) => datapoint.country === e.target.value
-    ).recovered;
+      (datapoint) => datapoint.Country === e.target.value
+    ).TotalRecovered;
     const deceased = covidData.find(
-      (datapoint) => datapoint.country === e.target.value
-    ).deceased;
+      (datapoint) => datapoint.Country === e.target.value
+    ).TotalDeaths;
 
     setCountry({
       name: e.target.value,

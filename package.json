@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
     "cors": "^2.8.5",
+    "jscharting": "^3.1.0",
     "newsapi": "^2.4.1",
     "node-fetch": "^2.6.1",
     "react": "^17.0.2",
@@ -41,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "jscharting-react": "^1.2.1"
   }
 }

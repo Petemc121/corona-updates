@@ -104,6 +104,48 @@ td {
   background-color: #ffb703;
 }
 
+#pieChart {
+  margin: 50px auto;
+}
+
+#pieContain {
+  background-color: #b5c0e4;
+  width: 20%;
+  margin: 0px auto;
+  border-radius: 5px;
+}
+
+#pieNumbers {
+  margin-top: -50px;
+  margin-left:10px;
+}
+
+#graphsContain {
+  background-color: #b5c0e4;
+  width: 20%;
+  height: auto;
+  margin: 0px auto;
+  border-radius: 5px;
+  padding:10px;
+}
+
+#newsContain {
+  background-color: #b5c0e4;
+  width: 20%;
+  height: auto;
+  padding: 10px;
+  margin: 0px auto;
+  border-radius: 5px;
+}
+
+.articlesContain {
+  display: flex !important;
+  justify-content:center;
+  flex-wrap: wrap;
+  flex-direction:column;
+  align-items:left;
+}
+
 @media (max-width: 400px) {
   #header {
     font-size: 20px;
@@ -115,6 +157,22 @@ td {
 
   .menuButtons {
     margin: 0px 20px;
+  }
+
+  #pieContain {
+    width:28%;
+    margin-left:25px;
+  }
+
+  #newsContain {
+    width:28%;
+    margin-left:25px;
+  }
+
+  #graphsContain {
+    width:28%;
+    margin-left:15px;
+
   }
 }
 
@@ -208,45 +266,7 @@ button {
   color:#022B3A;
 }
 
-#pieChart {
-  margin: 50px auto;
-}
 
-#pieContain {
-  background-color: #b5c0e4;
-  width: 20%;
-  margin: 0px auto;
-  border-radius: 5px;
-}
-
-#pieNumbers {
-  margin-top: -50px;
-}
-
-#graphsContain {
-  background-color: #b5c0e4;
-  width: 20%;
-  height: 250px;
-  margin: 0px auto;
-  border-radius: 5px;
-}
-
-#newsContain {
-  background-color: #b5c0e4;
-  width: 20%;
-  height: auto;
-  padding: 10px;
-  margin: 0px auto;
-  border-radius: 5px;
-}
-
-.articlesContain {
-  display: flex !important;
-  justify-content:center;
-  flex-wrap: wrap;
-  flex-direction:column;
-  align-items:left;
-}
 
 .article {
   margin: 10px auto;
@@ -272,6 +292,23 @@ button {
   margin-top:5px;
 
 }
+
+#recovered
+{
+color:#ffb703;
+}
+
+#infected
+{
+color:rgb(30, 129, 6);
+}
+
+#deceased
+{
+  color:rgb(126, 3, 3);
+
+}
+
 
 #statCarousel {
   display: flex;
