@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import JSCharting from "jscharting-react";
+import {JSC,JSCharting} from "jscharting-react";
 import GraphCountries from "./GraphCountries";
 
 export default function Graphs({ displayHandler, covidData, covidHistory }) {
@@ -21,17 +21,18 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
       return;
     }
 
-
     const countryData = covidHistory.filter(
       (datapoint) => datapoint.Country === e.target.value
     );
 
     const formatedCountryData = countryData.map((datapoint) => {
-      const dateObject = new Date(datapoint.date)
+      const dateObject = new Date(datapoint.date);
       return { x: dateObject, y: datapoint.total_cases };
     });
 
-    const filteredCountryData = formatedCountryData.filter(datapoint => datapoint.y > 0)
+    const filteredCountryData = formatedCountryData.filter(
+      (datapoint) => datapoint.y > 0
+    );
 
     const sortedCountryData = filteredCountryData.sort((a, b) => {
       if (a.y < b.y) {
@@ -45,32 +46,24 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
       return 0;
     });
 
-
     console.log(countryData);
     console.log(formatedCountryData);
     setConfig({
       country: e.target.value,
-      configuration: {
+      configuration: JSC.JSCChartConfig = {
+        type:'area',
+        xAxis: {
+          scale_type: "time",
+          formatString: "MMM-dd-yyyy",
+          label_text: "Date",
+        },
+        yAxis: {
+          label_text: "Number of People",
+        },
         series: [
           {
             points: sortedCountryData,
-            scales: {
-              xAxis: 
-                {
-                  scale_type:'time',
-                  formatString: 'MMM-dd-yyyy',
-                  scale: {
-                    interval: {
-                      unit:'week',
-                      multiplier: 1,
-                    },
-                    minorInterval: {
-                      unit:'week',
-                      multiplier:1,
-                    }
-                  },
-                },
-            },
+            name: "Cases",
           },
         ],
       },
@@ -80,6 +73,7 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
   return (
     <div style={{ display: displayHandler() }} id="graphsContain">
       <div style={{ height: "300px" }}>
+        {console.log(config.configuration)}
         <JSCharting options={config.configuration} />
       </div>
       <div class="center">

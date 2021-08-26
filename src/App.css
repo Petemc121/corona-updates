@@ -295,12 +295,12 @@ button {
 
 #recovered
 {
-color:#ffb703;
+color:rgb(30, 129, 6);
 }
 
 #infected
 {
-color:rgb(30, 129, 6);
+color:#ffb703;
 }
 
 #deceased
