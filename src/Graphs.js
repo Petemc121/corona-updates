@@ -51,7 +51,12 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
     setConfig({
       country: e.target.value,
       configuration: JSC.JSCChartConfig = {
-        type:'area',
+        legend_position: 'top',
+        type:'line',
+        defaultPoint: {
+          marker_type: 'none',
+          tooltip: '%seriesName %icon %yValue'
+        },
         xAxis: {
           scale_type: "time",
           formatString: "MMM-dd-yyyy",
