@@ -51,6 +51,9 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
     setConfig({
       country: e.target.value,
       configuration: JSC.JSCChartConfig = {
+        defaultSeries_type: '',
+        legend_description: 'chart legend',
+        legend_defaultEntry_description: '%name',
         legend_position: 'top',
         type:'line',
         defaultPoint: {
