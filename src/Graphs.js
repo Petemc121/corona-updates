@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import {JSC,JSCharting} from "jscharting-react";
+import {Line} from 'react-chartjs-2';
 import GraphCountries from "./GraphCountries";
 
 export default function Graphs({ displayHandler, covidData, covidHistory }) {
   const initConfig = {
-    type: "line",
     series: [
       {
         points: [],
@@ -16,6 +15,26 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
     configuration: initConfig,
   });
 
+  const options = {
+    scales: {
+      xAxes: [ {
+          display: true,
+          type: 'time',
+          time: {
+            parser: 'MM/DD/YYYY HH:mm',
+            tooltipFormat: 'll HH:mm',
+            unit: 'day',
+            unitStepSize: 1,
+            displayFormats: {
+              'day': 'MM/DD/YYYY'
+            }
+          }
+        }
+      ]
+  }
+}
+
+
   const handleGraphCountryChange = (e) => {
     if (e.target.value === "Select a country") {
       return;
@@ -26,8 +45,8 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
     );
 
     const formatedCountryData = countryData.map((datapoint) => {
-      const dateObject = new Date(datapoint.date);
-      return { x: dateObject, y: datapoint.total_cases };
+      // const dateObject = new Date(datapoint.date);
+      return { x: datapoint.date, y: datapoint.total_cases };
     });
 
     const filteredCountryData = formatedCountryData.filter(
@@ -46,35 +65,31 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
       return 0;
     });
 
+    const labels = sortedCountryData.map(datapoint => {
+      return datapoint.x
+    })
+
+    const data = sortedCountryData.map(datapoint => {
+      return datapoint.y
+    })
+
+  
     console.log(countryData);
     console.log(formatedCountryData);
     setConfig({
       country: e.target.value,
-      configuration: JSC.JSCChartConfig = {
-        defaultSeries_type: '',
-        legend_description: 'chart legend',
-        legend_defaultEntry_description: '%name',
-        legend_position: 'top',
-        type:'line',
-        defaultPoint: {
-          marker_type: 'none',
-          tooltip: '%seriesName %icon %yValue'
-        },
-        xAxis: {
-          scale_type: "time",
-          formatString: "MMM-dd-yyyy",
-          label_text: "Date",
-        },
-        yAxis: {
-          label_text: "Number of People",
-        },
-        series: [
+      configuration:  {
+        labels: labels,
+        datasets: [
           {
-            points: sortedCountryData,
-            name: "Cases",
+            label: 'Covid-19 Cases',
+            data: data,
+            fill: false,
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: '#ffb703',
           },
         ],
-      },
+      }
     });
   };
 
@@ -82,7 +97,7 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
     <div style={{ display: displayHandler() }} id="graphsContain">
       <div style={{ height: "300px" }}>
         {console.log(config.configuration)}
-        <JSCharting options={config.configuration} />
+        <Line options={options} data={config.configuration}  />
       </div>
       <div class="center">
         <GraphCountries
