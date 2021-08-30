@@ -129,6 +129,11 @@ td {
   padding:10px;
 }
 
+#graph {
+  position:relative;
+  margin-bottom:120px;
+}
+
 #newsContain {
   background-color: #b5c0e4;
   width: 20%;

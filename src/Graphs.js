@@ -16,6 +16,8 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
   });
 
   const options = {
+    maintainAspectRatio:false,
+    radius:0,
     scales: {
       xAxes: [ {
           display: true,
@@ -44,60 +46,96 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
       (datapoint) => datapoint.Country === e.target.value
     );
 
-    const formatedCountryData = countryData.map((datapoint) => {
-      // const dateObject = new Date(datapoint.date);
+      console.log(countryData)
+
+    const formatedInfectionData = countryData.map((datapoint) => {
       return { x: datapoint.date, y: datapoint.total_cases };
     });
 
-    const filteredCountryData = formatedCountryData.filter(
+    const formatedDeathData = countryData.map((datapoint) => {
+      return { x: datapoint.date, y: datapoint.total_deaths };
+    });
+
+    const filteredDeathData = formatedDeathData.filter(
       (datapoint) => datapoint.y > 0
     );
 
-    const sortedCountryData = filteredCountryData.sort((a, b) => {
-      if (a.y < b.y) {
+    const sortedDeathData = filteredDeathData.sort((a, b) => {
+      if (a.x < b.x) {
         return -1;
       }
 
-      if (a.y > b.y) {
+      if (a.x > b.x) {
         return 1;
       }
 
       return 0;
     });
-
-    const labels = sortedCountryData.map(datapoint => {
-      return datapoint.x
-    })
-
-    const data = sortedCountryData.map(datapoint => {
-      return datapoint.y
-    })
-
   
-    console.log(countryData);
-    console.log(formatedCountryData);
+    const filterFunction = (datapoint) => {
+      console.log(e.target.value)
+      if (e.target.value === "World") {
+       return (datapoint.y > 300000)
+      } else {
+     
+          return datapoint.y > 500
+      }
+     
+    }
+
+    const filteredInfectionData = formatedInfectionData.filter(filterFunction);
+
+    console.log(filteredInfectionData)
+    
+
+
+
+
+    const sortedInfectionData = filteredInfectionData.sort((a, b) => {
+      if (a.x < b.x) {
+        return -1;
+      }
+
+      if (a.x > b.x) {
+        return 1;
+      }
+
+      return 0;
+    });
+  
     setConfig({
       country: e.target.value,
       configuration:  {
-        labels: labels,
+        responsive:true,
         datasets: [
           {
-            label: 'Covid-19 Cases',
-            data: data,
+            label: 'Infections',
+            data: sortedInfectionData,
             fill: false,
-            backgroundColor: 'rgb(255, 99, 132)',
+            backgroundColor: '#ffb703',
             borderColor: '#ffb703',
           },
+          {
+            label: 'Deaths',
+            data: sortedDeathData,
+            fill: false,
+            backgroundColor: 'rgb(126, 3, 3)',
+            borderColor: 'rgb(126, 3, 3)',
+          }
         ],
       }
     });
+    console.log(sortedDeathData)
   };
 
   return (
     <div style={{ display: displayHandler() }} id="graphsContain">
       <div style={{ height: "300px" }}>
         {console.log(config.configuration)}
-        <Line options={options} data={config.configuration}  />
+        <Line width={100} height={50} options={options} data={config.configuration}  />
+      </div>
+      <div style={{ height: "200px" }}>
+      <Line width={100} height={50} options={options} data={config.configuration}  />
       </div>
       <div class="center">
         <GraphCountries

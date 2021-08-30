@@ -1,13 +1,7 @@
 import React from "react";
 import GraphCountry from "./GraphCountry";
 
-export default function GraphCountries({ graphCountryChange, covidData, covidHistory }) {
-
-  if (covidHistory !== undefined){
-  const countries = covidHistory.filter((datapoint,) => datapoint.Country === "United")
-
-  console.log(countries)
-  }
+export default function GraphCountries({ graphCountryChange, covidData,  }) {
 
 
   return (
