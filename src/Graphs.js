@@ -22,7 +22,7 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
 
   const options = {
     maintainAspectRatio:false,
-    radius:0,
+    radius:2,
     scales: {
       xAxes: [ {
           display: true,
@@ -170,6 +170,7 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
     setConfig2({
       country: e.target.value,
       configuration:  {
+        type:'pie',
         responsive:true,
         datasets: [
           {
