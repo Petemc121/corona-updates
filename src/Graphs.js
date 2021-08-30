@@ -10,10 +10,15 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
       },
     ],
   };
-  const [config, setConfig] = useState({
+  const [config1, setConfig1] = useState({
     country: "undefined",
     configuration: initConfig,
   });
+  const [config2, setConfig2] = useState({
+    country: "undefined",
+    configuration: initConfig,
+  });
+
 
   const options = {
     maintainAspectRatio:false,
@@ -33,6 +38,8 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
           }
         }
       ]
+
+      
   }
 }
 
@@ -48,8 +55,68 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
 
       console.log(countryData)
 
+        
+    const filterInfectionsFunction = (datapoint) => {
+      console.log(e.target.value)
+      if (e.target.value === "World") {
+       return (datapoint.y > 300000)
+      } else {
+     
+          return datapoint.y > 500
+      }
+     
+    }
     const formatedInfectionData = countryData.map((datapoint) => {
       return { x: datapoint.date, y: datapoint.total_cases };
+    });
+
+    const formatedDailyInfectionData = countryData.map((datapoint) => {
+      return { x: datapoint.date, y: datapoint.new_cases };
+    });
+
+
+    const sortedDailyInfectionData = formatedDailyInfectionData.sort((a, b) => {
+      if (a.x < b.x) {
+        return -1;
+      }
+
+      if (a.x > b.x) {
+        return 1;
+      }
+
+      return 0;
+    });
+
+    const formatedDailyIDeathData = countryData.map((datapoint) => {
+      return { x: datapoint.date, y: datapoint.new_deaths };
+    });
+
+
+    const sortedDailyDeathData = formatedDailyIDeathData.sort((a, b) => {
+      if (a.x < b.x) {
+        return -1;
+      }
+
+      if (a.x > b.x) {
+        return 1;
+      }
+
+      return 0;
+    });
+
+    const filteredInfectionData = formatedInfectionData.filter(filterInfectionsFunction);
+
+
+    const sortedInfectionData = filteredInfectionData.sort((a, b) => {
+      if (a.x < b.x) {
+        return -1;
+      }
+
+      if (a.x > b.x) {
+        return 1;
+      }
+
+      return 0;
     });
 
     const formatedDeathData = countryData.map((datapoint) => {
@@ -71,39 +138,11 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
 
       return 0;
     });
-  
-    const filterFunction = (datapoint) => {
-      console.log(e.target.value)
-      if (e.target.value === "World") {
-       return (datapoint.y > 300000)
-      } else {
-     
-          return datapoint.y > 500
-      }
-     
-    }
-
-    const filteredInfectionData = formatedInfectionData.filter(filterFunction);
 
     console.log(filteredInfectionData)
     
-
-
-
-
-    const sortedInfectionData = filteredInfectionData.sort((a, b) => {
-      if (a.x < b.x) {
-        return -1;
-      }
-
-      if (a.x > b.x) {
-        return 1;
-      }
-
-      return 0;
-    });
   
-    setConfig({
+    setConfig1({
       country: e.target.value,
       configuration:  {
         responsive:true,
@@ -111,6 +150,7 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
           {
             label: 'Infections',
             data: sortedInfectionData,
+            yAxisID:'A',
             fill: false,
             backgroundColor: '#ffb703',
             borderColor: '#ffb703',
@@ -118,6 +158,32 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
           {
             label: 'Deaths',
             data: sortedDeathData,
+            yAxisID:'B',
+            fill: false,
+            backgroundColor: 'rgb(126, 3, 3)',
+            borderColor: 'rgb(126, 3, 3)',
+          }
+        ],
+      }
+    });
+
+    setConfig2({
+      country: e.target.value,
+      configuration:  {
+        responsive:true,
+        datasets: [
+          {
+            label: 'Daily Infections',
+            data: sortedDailyInfectionData,
+            yAxisID:'A',
+            fill: false,
+            backgroundColor: '#ffb703',
+            borderColor: '#ffb703',
+          },
+          {
+            label: 'Daily Deaths',
+            data: sortedDailyDeathData,
+            yAxisID:'B',
             fill: false,
             backgroundColor: 'rgb(126, 3, 3)',
             borderColor: 'rgb(126, 3, 3)',
@@ -131,11 +197,12 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
   return (
     <div style={{ display: displayHandler() }} id="graphsContain">
       <div style={{ height: "300px" }}>
-        {console.log(config.configuration)}
-        <Line width={100} height={50} options={options} data={config.configuration}  />
+        {console.log(config1.configuration)}
+        <Line width={100} height={50} options={options} data={config1.configuration}  />
       </div>
-      <div style={{ height: "200px" }}>
-      <Line width={100} height={50} options={options} data={config.configuration}  />
+      <div style={{ height: "300px" }}>
+        {console.log(config1.configuration)}
+        <Line width={100} height={50} options={options} data={config2.configuration}  />
       </div>
       <div class="center">
         <GraphCountries
