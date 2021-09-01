@@ -2,7 +2,6 @@ import React from 'react'
 import Article from './Article'
 
 export default function Articles({covidNews}) {
-    console.log(covidNews.articles)
    
 
         
@@ -13,7 +12,7 @@ export default function Articles({covidNews}) {
                    
                 if (index < 10)
                 {
-                    return  <Article article={article} />
+                    return  <Article key={index} article={article} />
                 }
             })
          }

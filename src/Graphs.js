@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Line} from 'react-chartjs-2';
+import { Line } from "react-chartjs-2";
 import GraphCountries from "./GraphCountries";
 
 export default function Graphs({ displayHandler, covidData, covidHistory }) {
@@ -19,30 +19,26 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
     configuration: initConfig,
   });
 
-
   const options = {
-    maintainAspectRatio:false,
-    radius:2,
+    maintainAspectRatio: false,
+    radius: 2,
     scales: {
-      xAxes: [ {
-          display: true,
-          type: 'time',
+      xAxes: [
+        {
+          type: "time",
           time: {
-            parser: 'MM/DD/YYYY HH:mm',
-            tooltipFormat: 'll HH:mm',
-            unit: 'day',
+            parser: "MM/DD/YYYY HH:mm",
+            tooltipFormat: "ll HH:mm",
+            unit: "day",
             unitStepSize: 1,
             displayFormats: {
-              'day': 'MM/DD/YYYY'
-            }
-          }
-        }
-      ]
-
-      
-  }
-}
-
+              day: "MM/DD/YYYY",
+            },
+          },
+        },
+      ],
+    },
+  };
 
   const handleGraphCountryChange = (e) => {
     if (e.target.value === "Select a country") {
@@ -53,19 +49,26 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
       (datapoint) => datapoint.Country === e.target.value
     );
 
-      console.log(countryData)
-
-        
     const filterInfectionsFunction = (datapoint) => {
-      console.log(e.target.value)
       if (e.target.value === "World") {
-       return (datapoint.y > 300000)
+        return datapoint.y > 300000;
       } else {
-     
-          return datapoint.y > 500
+        return datapoint.y > 500;
       }
-     
-    }
+    };
+
+    const filterDeathsFunction = (datapoint) => {
+      if (e.target.value === "World") {
+        return datapoint.y > 5000;
+      } else {
+        return datapoint.y > 50;
+      }
+    };
+
+    const filterDailyFunction = (datapoint) => {
+      return datapoint.y > 0;
+    };
+
     const formatedInfectionData = countryData.map((datapoint) => {
       return { x: datapoint.date, y: datapoint.total_cases };
     });
@@ -74,25 +77,31 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
       return { x: datapoint.date, y: datapoint.new_cases };
     });
 
-
-    const sortedDailyInfectionData = formatedDailyInfectionData.sort((a, b) => {
-      if (a.x < b.x) {
-        return -1;
-      }
-
-      if (a.x > b.x) {
-        return 1;
-      }
-
-      return 0;
-    });
-
+ 
     const formatedDailyIDeathData = countryData.map((datapoint) => {
       return { x: datapoint.date, y: datapoint.new_deaths };
     });
 
+  
+    const formatedDeathData = countryData.map((datapoint) => {
+      return { x: datapoint.date, y: datapoint.total_deaths };
+    });
 
-    const sortedDailyDeathData = formatedDailyIDeathData.sort((a, b) => {
+    const filteredDailyInfectionData =
+    formatedDailyInfectionData.filter(filterDailyFunction);
+
+
+    const filteredDailyDeathData =
+    formatedDailyIDeathData.filter(filterDailyFunction);
+
+    const filteredInfectionData = formatedInfectionData.filter(
+      filterInfectionsFunction
+    );
+
+    const filteredDeathData = formatedDeathData.filter(filterDeathsFunction);
+
+
+    const sortedDailyInfectionData = filteredDailyInfectionData.sort((a, b) => {
       if (a.x < b.x) {
         return -1;
       }
@@ -104,8 +113,17 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
       return 0;
     });
 
-    const filteredInfectionData = formatedInfectionData.filter(filterInfectionsFunction);
+    const sortedDailyDeathData = filteredDailyDeathData.sort((a, b) => {
+      if (a.x < b.x) {
+        return -1;
+      }
 
+      if (a.x > b.x) {
+        return 1;
+      }
+
+      return 0;
+    });
 
     const sortedInfectionData = filteredInfectionData.sort((a, b) => {
       if (a.x < b.x) {
@@ -119,13 +137,7 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
       return 0;
     });
 
-    const formatedDeathData = countryData.map((datapoint) => {
-      return { x: datapoint.date, y: datapoint.total_deaths };
-    });
 
-    const filteredDeathData = formatedDeathData.filter(
-      (datapoint) => datapoint.y > 0
-    );
 
     const sortedDeathData = filteredDeathData.sort((a, b) => {
       if (a.x < b.x) {
@@ -139,71 +151,76 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
       return 0;
     });
 
-    console.log(filteredInfectionData)
-    
-  
     setConfig1({
       country: e.target.value,
-      configuration:  {
-        responsive:true,
+      configuration: {
+        responsive: true,
         datasets: [
           {
-            label: 'Infections',
+            label: "Infections",
             data: sortedInfectionData,
-            yAxisID:'A',
+            yAxisID: "A",
             fill: false,
-            backgroundColor: '#ffb703',
-            borderColor: '#ffb703',
+            backgroundColor: "#ffb703",
+            borderColor: "#ffb703",
           },
           {
-            label: 'Deaths',
+            label: "Deaths",
             data: sortedDeathData,
-            yAxisID:'B',
+            yAxisID: "B",
             fill: false,
-            backgroundColor: 'rgb(126, 3, 3)',
-            borderColor: 'rgb(126, 3, 3)',
-          }
+            backgroundColor: "rgb(126, 3, 3)",
+            borderColor: "rgb(126, 3, 3)",
+          },
         ],
-      }
+      },
     });
 
     setConfig2({
       country: e.target.value,
-      configuration:  {
-        type:'pie',
-        responsive:true,
+      configuration: {
+        responsive: true,
         datasets: [
           {
-            label: 'Daily Infections',
+            type: "scatter",
+            label: "Daily Infections",
             data: sortedDailyInfectionData,
-            yAxisID:'A',
+            yAxisID: "A",
             fill: false,
-            backgroundColor: '#ffb703',
-            borderColor: '#ffb703',
+            backgroundColor: "#ffb703",
+            borderColor: "#ffb703",
           },
           {
-            label: 'Daily Deaths',
+            type: "scatter",
+            label: "Daily Deaths",
             data: sortedDailyDeathData,
-            yAxisID:'B',
+            yAxisID: "B",
             fill: false,
-            backgroundColor: 'rgb(126, 3, 3)',
-            borderColor: 'rgb(126, 3, 3)',
-          }
+            backgroundColor: "rgb(126, 3, 3)",
+            borderColor: "rgb(126, 3, 3)",
+          },
         ],
-      }
+      },
     });
-    console.log(sortedDeathData)
   };
 
   return (
     <div style={{ display: displayHandler() }} id="graphsContain">
-      <div style={{ height: "300px" }}>
-        {console.log(config1.configuration)}
-        <Line width={100} height={50} options={options} data={config1.configuration}  />
+      <div style={{ height: "200px" }}>
+        <Line
+          width={100}
+          height={50}
+          options={options}
+          data={config1.configuration}
+        />
       </div>
-      <div style={{ height: "300px" }}>
-        {console.log(config1.configuration)}
-        <Line width={100} height={50} options={options} data={config2.configuration}  />
+      <div style={{ height: "200px" }}>
+        <Line
+          width={100}
+          height={50}
+          options={options}
+          data={config2.configuration}
+        />
       </div>
       <div class="center">
         <GraphCountries

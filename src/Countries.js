@@ -6,9 +6,8 @@ export default function Countries({ countryChange, covidData }) {
     <select onChange={countryChange} id="countrySelect">
       <option default="selected">Select a country</option>
       {covidData.map((datapoint, index) => {
-        if (index > 0)
-        {
-        return <Country country={datapoint.Country} />;
+        if (index > 0 && datapoint.County !== "Total:") {
+          return <Country key={index} country={datapoint.Country} />;
         }
       })}
     </select>
