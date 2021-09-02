@@ -75,7 +75,7 @@ export default function App() {
     }
 
     fetchGlobalData();
-  
+   
     
   }, []);
 

@@ -21,14 +21,27 @@ export default function GlobeStats({ covidData, displayHandler }) {
 
     setCountry({
       name: e.target.value,
+      recovered: 0,
+      infected: 0,
+      deceased: 0,
+    });
+
+    setTimeout(() => {setCountry({
+      name: e.target.value,
       recovered: recovered,
       infected: infected,
       deceased: deceased,
-    });
+    })}, 1000)
+  
   };
 
   const circleChangeHandler = (value, infectedValue, strokeValRatio) => {
-    const strokeVal = (strokeValRatio * 100) / infectedValue;
+
+    let strokeVal = 0;
+    if (infectedValue !== 0) {
+     strokeVal = (strokeValRatio * 100) / infectedValue;
+    }
+
     return value * strokeVal + " 999";
   };
 

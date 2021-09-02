@@ -77,29 +77,25 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
       return { x: datapoint.date, y: datapoint.new_cases };
     });
 
- 
     const formatedDailyIDeathData = countryData.map((datapoint) => {
       return { x: datapoint.date, y: datapoint.new_deaths };
     });
 
-  
     const formatedDeathData = countryData.map((datapoint) => {
       return { x: datapoint.date, y: datapoint.total_deaths };
     });
 
     const filteredDailyInfectionData =
-    formatedDailyInfectionData.filter(filterDailyFunction);
-
+      formatedDailyInfectionData.filter(filterDailyFunction);
 
     const filteredDailyDeathData =
-    formatedDailyIDeathData.filter(filterDailyFunction);
+      formatedDailyIDeathData.filter(filterDailyFunction);
 
     const filteredInfectionData = formatedInfectionData.filter(
       filterInfectionsFunction
     );
 
     const filteredDeathData = formatedDeathData.filter(filterDeathsFunction);
-
 
     const sortedDailyInfectionData = filteredDailyInfectionData.sort((a, b) => {
       if (a.x < b.x) {
@@ -136,8 +132,6 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
 
       return 0;
     });
-
-
 
     const sortedDeathData = filteredDeathData.sort((a, b) => {
       if (a.x < b.x) {
