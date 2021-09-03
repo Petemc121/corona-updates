@@ -15,24 +15,41 @@ export default function GraphCountries({ graphCountryChange, covidData }) {
     // names must be equal
     return 0;
   });
+
+  const extractedCountries = sortedCovidData.map(datapoint => {
+
+      return datapoint.Country;
+    
+  })
+
+  console.log(extractedCountries)
+
+
+extractedCountries.splice(extractedCountries.indexOf("World"), 1)
+ 
+
+  extractedCountries.unshift("World")
+ 
+
+console.log(extractedCountries)
   return (
     <select onChange={graphCountryChange} id="countrySelect">
       <option default="selected">Select a country</option>
       {
-      sortedCovidData.map((datapoint, index) => {
-        if (index > 0 && datapoint.Country !== "Total:")
+      extractedCountries.map((datapoint, index) => {
+        if (index > 0 && datapoint !== "Total:")
         {
-          if (datapoint.Country === "UK")
+          if (datapoint === "UK")
           {
             return <GraphCountry key={index} graphCountry="United Kingdom" />;
           }
 
-          if (datapoint.Country === "USA")
+          if (datapoint === "USA")
           {
             return <GraphCountry key={index}graphCountry="United States" />;
           }
           
-        return <GraphCountry key={index} graphCountry={datapoint.Country} />;
+        return <GraphCountry key={index} graphCountry={datapoint} />;
         }
       })}
     </select>
