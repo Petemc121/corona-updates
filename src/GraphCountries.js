@@ -2,13 +2,24 @@ import React from "react";
 import GraphCountry from "./GraphCountry";
 
 export default function GraphCountries({ graphCountryChange, covidData }) {
- 
-console.log(covidData)
+  const sortedCovidData = covidData.sort(function(a, b) {
+    var countryA = a.Country.toUpperCase(); // ignore upper and lowercase
+    var countryB = b.Country.toUpperCase(); // ignore upper and lowercase
+    if (countryA < countryB) {
+      return -1;
+    }
+    if (countryA > countryB) {
+      return 1;
+    }
+  
+    // names must be equal
+    return 0;
+  });
   return (
     <select onChange={graphCountryChange} id="countrySelect">
       <option default="selected">Select a country</option>
       {
-      covidData.map((datapoint, index) => {
+      sortedCovidData.map((datapoint, index) => {
         if (index > 0 && datapoint.Country !== "Total:")
         {
           if (datapoint.Country === "UK")
