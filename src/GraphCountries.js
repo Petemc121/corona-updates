@@ -22,7 +22,6 @@ export default function GraphCountries({ graphCountryChange, covidData }) {
     
   })
 
-  console.log(extractedCountries)
 
 
 extractedCountries.splice(extractedCountries.indexOf("World"), 1)
@@ -31,7 +30,6 @@ extractedCountries.splice(extractedCountries.indexOf("World"), 1)
   extractedCountries.unshift("World")
  
 
-console.log(extractedCountries)
   return (
     <select onChange={graphCountryChange} id="countrySelect">
       <option default="selected">Select a country</option>
