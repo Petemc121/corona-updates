@@ -36,50 +36,51 @@ export default function App() {
           console.error(error);
         });
 
-        var options2 = {
-          method: 'GET',
-          url: 'https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/',
-          headers: {
-            'x-rapidapi-host': 'vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com',
-            'x-rapidapi-key': 'ac32115283msh882c33e41c22ec5p1ef67ejsn8ed88a89107b'
-          }
-        };
-        
-       const request2 = await Axios.request(options2).then(function (response) {
-        setCovidData(response.data);
-        }).catch(function (error) {
+      var options2 = {
+        method: "GET",
+        url: "https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/",
+        headers: {
+          "x-rapidapi-host":
+            "vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com",
+          "x-rapidapi-key":
+            "ac32115283msh882c33e41c22ec5p1ef67ejsn8ed88a89107b",
+        },
+        timeout: 2,
+      };
+
+      const request2 = await Axios.request(options2)
+        .then(function (response) {
+          setCovidData(response.data);
+        })
+        .catch(function (error) {
           console.error(error);
         });
 
+      var options3 = {
+        method: "GET",
+        url: "https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/covid-ovid-data/",
+        headers: {
+          "x-rapidapi-host":
+            "vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com",
+          "x-rapidapi-key":
+            "ac32115283msh882c33e41c22ec5p1ef67ejsn8ed88a89107b",
+        },
+        timeout: 2,
+      };
 
-        var options3 = {
-          method: 'GET',
-          url: 'https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/covid-ovid-data/',
-          headers: {
-            'x-rapidapi-host': 'vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com',
-            'x-rapidapi-key': 'ac32115283msh882c33e41c22ec5p1ef67ejsn8ed88a89107b'
-          }
-        };
-        
-        const request3 = await Axios.request(options3).then(function (response) {
-          setCovidHistory(response.data)
-        }).catch(function (error) {
+      const request3 = await Axios.request(options3)
+        .then(function (response) {
+          setCovidHistory(response.data);
+        })
+        .catch(function (error) {
           console.error(error);
         });
 
-       
-        
-
-
-      return (request1 + request2 + request3);
+      return request1 + request2 + request3;
     }
 
     fetchGlobalData();
-   
-    
   }, []);
-
-
 
   const activeHandler = () => {
     setActive(!active);
@@ -133,7 +134,11 @@ export default function App() {
       <div style={{ right: carouselPosition }} id="statCarousel">
         <GlobeStats displayHandler={displayHandler} covidData={covidData} />
         <News covidNews={covidNews} displayHandler={displayHandler} />
-        <Graphs covidData={covidData} covidHistory={covidHistory} displayHandler={displayHandler} />
+        <Graphs
+          covidData={covidData}
+          covidHistory={covidHistory}
+          displayHandler={displayHandler}
+        />
       </div>
     </>
   );
