@@ -145,9 +145,8 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
       return 0;
     });
 
-    console.log(sortedDeathData)
-    console.log(sortedInfectionData)
-
+    console.log(sortedDeathData);
+    console.log(sortedInfectionData);
 
     setConfig1({
       country: e.target.value,

@@ -45,7 +45,6 @@ export default function App() {
           "x-rapidapi-key":
             "ac32115283msh882c33e41c22ec5p1ef67ejsn8ed88a89107b",
         },
-        timeout: 5,
       };
 
       const request2 = await Axios.request(options2)

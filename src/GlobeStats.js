@@ -26,20 +26,20 @@ export default function GlobeStats({ covidData, displayHandler }) {
       deceased: 0,
     });
 
-    setTimeout(() => {setCountry({
-      name: e.target.value,
-      recovered: recovered,
-      infected: infected,
-      deceased: deceased,
-    })}, 1000)
-  
+    setTimeout(() => {
+      setCountry({
+        name: e.target.value,
+        recovered: recovered,
+        infected: infected,
+        deceased: deceased,
+      });
+    }, 1000);
   };
 
   const circleChangeHandler = (value, infectedValue, strokeValRatio) => {
-
     let strokeVal = 0;
     if (infectedValue !== 0) {
-     strokeVal = (strokeValRatio * 100) / infectedValue;
+      strokeVal = (strokeValRatio * 100) / infectedValue;
     }
 
     return value * strokeVal + " 999";
@@ -115,11 +115,15 @@ export default function GlobeStats({ covidData, displayHandler }) {
         <div id="pieNumbers" class="center">
           <div class="textStats" data-progress="0">
             <p class="title">Recovery rate</p>
-            <p class="numbers" id="RR">{(country.recovered / country.infected).toFixed(3)}</p>
+            <p class="numbers" id="RR">
+              {(country.recovered / country.infected).toFixed(3)}
+            </p>
           </div>
           <div class="textStats" data-progress="0">
             <p class="title">Death rate</p>
-            <p class="numbers" id="DR">{(country.deceased / country.infected).toFixed(3)}</p>
+            <p class="numbers" id="DR">
+              {(country.deceased / country.infected).toFixed(3)}
+            </p>
           </div>
         </div>
 
