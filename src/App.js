@@ -56,7 +56,26 @@ export default function App() {
           console.error(error);
         });
 
-      return request1 + request2;
+      var options3 = {
+        method: "GET",
+        url: "https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/covid-ovid-data/",
+        headers: {
+          "x-rapidapi-host":
+            "vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com",
+          "x-rapidapi-key":
+            "ac32115283msh882c33e41c22ec5p1ef67ejsn8ed88a89107b",
+        },
+      };
+
+      const request3 = await Axios.request(options3)
+        .then(function (response) {
+          setCovidHistory(response.data);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+
+      return request1 + request2 + request3;
     }
 
     fetchGlobalData();
