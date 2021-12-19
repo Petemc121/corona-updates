@@ -3,6 +3,7 @@ import { Line } from "react-chartjs-2";
 import GraphCountries from "./GraphCountries";
 
 export default function Graphs({ displayHandler, covidData, covidHistory }) {
+  console.log(covidHistory);
   const initConfig = {
     series: [
       {
@@ -200,6 +201,10 @@ export default function Graphs({ displayHandler, covidData, covidHistory }) {
       },
     });
   };
+
+  if (covidHistory === undefined) {
+    return "...loading";
+  }
 
   return (
     <div style={{ display: displayHandler() }} id="graphsContain">
